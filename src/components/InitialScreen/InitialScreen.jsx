@@ -8,7 +8,7 @@ import aiLarge from "../../assets/aiLarge.png";
 
 const InitialScreen = () => {
   const handleCardClick = (title) => {
-    console.log("Clicked on:", title);
+    // console.log("Clicked on:", title);
   };
 
   return (
