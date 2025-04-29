@@ -215,7 +215,7 @@ const App = () => {
       },
     ]);
   };
-  const handleSave = (data) => {
+  const handleSave = () => {
     console.log("clickedSave");
   };
 

@@ -24,7 +24,7 @@ const FormContainer = ({ handleAsk, handleSave }) => {
         <div className={styles.formContainerInput}>
           <input
             type="text"
-            placeholder="Type your message..."
+            placeholder="Message Bot AI..."
             className={styles.input}
             aria-required
             required
