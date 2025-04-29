@@ -5,8 +5,6 @@ import SideBar from "./components/SideBar/SideBar";
 import Home from "./pages/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
 
-import Card from "./components/Card/Card";
-import ChatCard from "./components/ChatCard/ChatCard";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import human from "./assets/human.png";
@@ -15,14 +13,9 @@ import aiResArr from "./aiData/sampleData.json";
 
 const App = () => {
   const [showModal, setShowModal] = useState(false);
-  // const [message, setMessage] = useState("");
-  const [cardArray, setCardArray] = useState([]);
-  // an cardArray to store 2 cards at a time .
-  const [currentFeedbackIdx, setCurrentFeedbackIdx] = useState(null); // NEW state
-
-  // All functions below here ------
-
-  // -----Getting response from json ends here----
+  const [cardArray, setCardArray] = useState([]); // an cardArray to store 2 cards at a time .
+  const [currentFeedbackIdx, setCurrentFeedbackIdx] = useState(null); // To store the idx of which card feedback was given
+  // ---------All functions below here ------
   const handleCloseModal = () => setShowModal(!showModal);
 
   const handleCardHover = (idx) => {
@@ -217,17 +210,53 @@ const App = () => {
   };
   const handleSave = () => {
     console.log("clickedSave");
+
+    /* 
+    Milestone 5: -- How to persist data in local storage?
+    
+    Step 1: First, check if the cardArray is not empty. If it contains data, we need to save it.
+    - If cardArray has data, we need to convert it to a JSON string before saving it in localStorage.
+    
+    Step 2: Check if there is already data stored in the 'card' key in localStorage.
+    - If data exists, we retrieve it using `localStorage.getItem("card")` and parse it into a JavaScript object using `JSON.parse()`.
+    
+    Step 3: Merge the existing data (if any) with the new cards in cardArray.
+    - Use the spread operator `...` to merge the existing cards with the new `cardArray` to ensure we add new data to the stored cards, without overwriting the old data.
+    - After merging, we stringify the merged data using `JSON.stringify()` and store it back in localStorage.
+    
+    Step 4: If there is no existing data in localStorage (i.e., cardDataVal is null), simply save the `cardArray` as it is by stringifying it and storing it in localStorage.
+    
+    Step 5: After saving the data to localStorage, we clear the cardArray by resetting it using `setCardArray([])`. This will empty the array for future operations.
+  */
+
+    const cardDataVal = JSON.parse(localStorage.getItem("card"));
+
+    // const newCardArr = ...cardDataVal , ...cardArray;
+
+    cardDataVal &&
+      localStorage.setItem(
+        "card",
+        JSON.stringify([...cardDataVal, ...cardArray])
+      );
+
+    // Note - JSON.stringify takes one argument only
+
+    cardArray.length > 0 && !cardDataVal
+      ? localStorage.setItem("card", JSON.stringify(cardArray))
+      : "";
+
+    // step 2: -- Now empty the cardArray using the setter method
+
+    setCardArray([]);
   };
 
+  // -----------All function ends here ---------------
   return (
     <>
       <main className="main-container">
         {/* div main */}
         <aside className="sidebar-div">
-          <SideBar
-          // handleHistory={handleHistory}
-          // handleNewChat={handleNewChat}
-          ></SideBar>
+          <SideBar></SideBar>
         </aside>
         <section className="section-div-container">
           <nav className="navbar-container">

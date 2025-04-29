@@ -26,22 +26,22 @@ const InitialScreen = () => {
         <InitialScreenCard
           title="Hi, what is the weather"
           subtitle="Get immediate AI generated response"
-          onClick={() => handleCardClick("weather")}
+          // onClick={() => handleCardClick("weather")}
         />
         <InitialScreenCard
           title="Hi, what is my location"
           subtitle="Get immediate AI generated response"
-          onClick={() => handleCardClick("location")}
+          // onClick={() => handleCardClick("location")}
         />
         <InitialScreenCard
           title="Hi, what is the temperature"
           subtitle="Get immediate AI generated response"
-          onClick={() => handleCardClick("temperature")}
+          // onClick={() => handleCardClick("temperature")}
         />
         <InitialScreenCard
           title="Hi, how are you"
           subtitle="Get immediate AI generated response"
-          onClick={() => handleCardClick("how are you")}
+          // onClick={() => handleCardClick("how are you")}
         />
       </div>
     </div>
