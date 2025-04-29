@@ -199,7 +199,7 @@ const App = () => {
       // step 4: -- card data 2
       {
         avatar: aiLarge,
-        name: "Soul Ai",
+        name: "Soul AI",
         time: indianTime,
         // message: "Sorry, Did not understand your query!",
         message: msg,
