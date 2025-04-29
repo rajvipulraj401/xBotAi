@@ -1,15 +1,12 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
 import InitialScreenCard from "../InitialScreenCard/InitialScreenCard";
-import FormContainer from "../FormContainer/FormContainer";
 import styles from "./InitialScreen.module.css";
-
 import aiLarge from "../../assets/aiLarge.png";
 
 const InitialScreen = () => {
-  const handleCardClick = (title) => {
-    // console.log("Clicked on:", title);
-  };
+  // const handleCardClick = (title) => {
+  //   // console.log("Clicked on:", title);
+  // };
 
   return (
     <div className={styles.container}>
@@ -17,38 +14,35 @@ const InitialScreen = () => {
 
       <div className={styles.imageandHeading}>
         <h2 className={styles.heading}>How Can I Help You Today?</h2>
-        <div className={styles.aiLargeContainer}>
+
+        <div className={styles.aiImgLargeContainer}>
           <img src={aiLarge} alt="" />
         </div>
       </div>
 
-      <div className={styles.cardAndForm}>
-        <div className={styles.cardsWrapper}>
-          <InitialScreenCard
-            title="Hi, what is the weather"
-            subtitle="Get immediate AI generated response"
-            onClick={() => handleCardClick("weather")}
-          />
-          <InitialScreenCard
-            title="Hi, what is my location"
-            subtitle="Get immediate AI generated response"
-            onClick={() => handleCardClick("location")}
-          />
-          <InitialScreenCard
-            title="Hi, what is the temperature"
-            subtitle="Get immediate AI generated response"
-            onClick={() => handleCardClick("temperature")}
-          />
-          <InitialScreenCard
-            title="Hi, how are you"
-            subtitle="Get immediate AI generated response"
-            onClick={() => handleCardClick("how are you")}
-          />
-        </div>
+      {/* Below is the rendering of all the four cards----- */}
 
-        <div className={styles.formContainer}>
-          <FormContainer />
-        </div>
+      <div className={styles.cardsWrapper}>
+        <InitialScreenCard
+          title="Hi, what is the weather"
+          subtitle="Get immediate AI generated response"
+          onClick={() => handleCardClick("weather")}
+        />
+        <InitialScreenCard
+          title="Hi, what is my location"
+          subtitle="Get immediate AI generated response"
+          onClick={() => handleCardClick("location")}
+        />
+        <InitialScreenCard
+          title="Hi, what is the temperature"
+          subtitle="Get immediate AI generated response"
+          onClick={() => handleCardClick("temperature")}
+        />
+        <InitialScreenCard
+          title="Hi, how are you"
+          subtitle="Get immediate AI generated response"
+          onClick={() => handleCardClick("how are you")}
+        />
       </div>
     </div>
   );

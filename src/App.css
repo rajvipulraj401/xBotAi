@@ -11,16 +11,19 @@ body::-webkit-scrollbar {
 .main-container {
   width: 100%;
   /* height: 100%; */
+  height: 100vh;
   display: grid;
   grid-template-columns: 20% 80%;
 }
 
 .navbar-container {
   /* outline: 1px solid black; */
+  position: fixed;
+  width: 80%;
+  border-bottom: 1px solid red;
 }
 .sidebar-div {
-  /* height: 100%; */
-  height: 100vh;
+  height: 100%;
 }
 
 .section-div-container {

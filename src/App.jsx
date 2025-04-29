@@ -13,8 +13,8 @@ import { BrowserRouter, Route, Routes, useNavigate } from "react-router";
 
 import "./App.css";
 
-import human from "./assets/human.png";
-import aiLarge from "./assets/aiLarge.png";
+// import human from "./assets/human.png";
+// import aiLarge from "./assets/aiLarge.png";
 
 const App = () => {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState("");
 
   // All functions below here ------
 
@@ -36,21 +37,24 @@ const App = () => {
   //   navigate("/"); // '/history' page par chale jao
   // };
 
-  const handleLikeClick = () => {
-    setShowRating(!showRating);
-  };
-  const handleDislikeClick = () => {
-    setShowModal(true);
-  };
+  const handleLikeClick = () => setShowRating(!showRating);
 
-  const handleCloseModal = () => {
-    setShowModal(!showModal);
-  };
+  const handleDislikeClick = () => setShowModal(true);
+
+  const handleCloseModal = () => setShowModal(!showModal);
 
   const handleFeedback = (data) => {
     // console.log(data);
     setFeedback(data); // the return data set tofeed back
     setShowModal(!showModal);
+  };
+
+  const handleAsk = (data) => {
+    console.log(data);
+    // NOW create a card and send this msg to that card and then look  for this question in the aiData.json
+  };
+  const handleSave = (data) => {
+    console.log("clickedSave");
   };
   return (
     <>
@@ -68,13 +72,30 @@ const App = () => {
           </nav>
 
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home handleAsk={handleAsk} handleSave={handleSave} />}
+            />
             <Route path="/history" element={<History />} />
           </Routes>
+        </section>
+      </main>
 
-          {/* <Home></Home> */}
+      {/* mODAL --- PASS THIS modal handle close  , and handle submit to close modal and submit feedback for submit */}
 
-          {/* <Card
+      {showModal && (
+        <div className="modalContainer">
+          <Modal onClose={handleCloseModal} onConfirm={handleFeedback}></Modal>
+          {/* <Modal></Modal> */}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default App;
+
+/* <Card
             avatar={human}
             name="You"
             time="2:30pm"
@@ -100,20 +121,4 @@ const App = () => {
             handleLikeClick={handleLikeClick}
             handleDislikeClick={handleDislikeClick}
             handleRating={showRating}
-          ></Card> */}
-        </section>
-      </main>
-
-      {/* mODAL --- PASS THIS modal handle close  , and handle submit to close modal and submit feedback for submit */}
-
-      {showModal && (
-        <div className="modalContainer">
-          <Modal onClose={handleCloseModal} onConfirm={handleFeedback}></Modal>
-          {/* <Modal></Modal> */}
-        </div>
-      )}
-    </>
-  );
-};
-
-export default App;
+          ></Card> */

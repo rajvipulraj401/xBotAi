@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ children, background, handleClick, width }) => {
+const Button = ({ children, background, handleClick, width, type }) => {
   return (
     <button
       className={styles.button}
@@ -15,6 +15,7 @@ const Button = ({ children, background, handleClick, width }) => {
         cursor: "pointer",
       }}
       onClick={handleClick}
+      type={type ? "submit" : "button"}
     >
       {children}
     </button>
