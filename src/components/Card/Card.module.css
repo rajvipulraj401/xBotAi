@@ -10,9 +10,9 @@
   margin: 30px 20px 0px 20px;
 }
 
-.card:hover {
+/* .card:hover {
   background-color: red;
-}
+} */
 
 .timeAndBtn {
   display: flex;

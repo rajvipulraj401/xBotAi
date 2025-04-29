@@ -103,6 +103,7 @@ import React, { useState } from "react";
 import styles from "./Card.module.css";
 
 const Card = ({
+  idx,
   avatar,
   name,
   time,
@@ -114,8 +115,10 @@ const Card = ({
   handleLikeClick,
   handleRating, // if this is true, show rating stars
   onRatingChange, // callback prop to notify parent when user clicks a star
+  onCardHover,
+  isHovered,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   const [hoverRating, setHoverRating] = useState(null); // for star hover effect
 
   const cardStyles = {
@@ -134,16 +137,28 @@ const Card = ({
 
   const handleStarClick = (index) => {
     if (onRatingChange) {
-      onRatingChange(index + 1);
+      onRatingChange(index + 1, idx);
     }
   };
 
+  // console.log("i was rerendered");
   return (
     <div
       className={`${styles.card}`}
       style={cardStyles}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      // onMouseEnter={() => setIsHovered(true)}
+      // onMouseLeave={() => setIsHovered(false)}
+
+      // ----the BELOW code was passing for both card but we want it only in ai card
+      // onMouseEnter={() => onCardHover(idx)}
+      // onMouseLeave={() => onCardHover(idx)}
+
+      onMouseEnter={
+        onCardHover !== undefined ? () => onCardHover(idx) : undefined
+      }
+      onMouseLeave={
+        onCardHover !== undefined ? () => onCardHover(null) : undefined
+      }
     >
       {/* Left - Avatar */}
       <div className={styles.leftSection}>
@@ -160,12 +175,25 @@ const Card = ({
           <p className={styles.time}>{time}</p>
           {isHovered && (
             <div className={styles.btnContainer}>
-              <button className={styles.likeBtn} onClick={handleLikeClick}>
+              {/* <button className={styles.likeBtn} onClick={handleLikeClick}> */}
+              {/* Doing this to know which card was clicked */}
+              <button
+                className={styles.likeBtn}
+                onClick={() => {
+                  handleLikeClick(idx);
+                }}
+              >
                 👍
               </button>
               <button
                 className={styles.dislikeBtn}
-                onClick={handleDislikeClick}
+                // onClick={handleDislikeClick}
+                // onClick={(idx) => handleDislikeClick(idx)}
+                // This above is wrong because on click we dont get any idx
+                //  we only get event object so if we writed idx it will be
+                //passing event withthe name idx
+
+                onClick={() => handleDislikeClick(idx)}
               >
                 👎
               </button>
