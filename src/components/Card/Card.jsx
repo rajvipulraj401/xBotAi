@@ -167,7 +167,8 @@ const Card = ({
 
       {/* Right - Content */}
       <div className={styles.rightSection}>
-        <h3 className={styles.name}>{name}</h3>
+        {/* <h3 className={styles.name}>{name}</h3> */}
+        <span className={styles.name}>{name}</span>
 
         <p className={styles.message}>{message}</p>
 
